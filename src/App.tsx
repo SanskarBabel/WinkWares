@@ -10,12 +10,9 @@ import { VendorProducts } from '@/pages/vendor/VendorProducts'
 import { VendorOrders } from '@/pages/vendor/VendorOrders'
 import { VendorAnalytics } from '@/pages/vendor/VendorAnalytics'
 import { VendorSettings } from '@/pages/vendor/VendorSettings'
-import { VendorPayouts } from '@/pages/vendor/VendorPayouts'
 import { CheckoutPage } from '@/pages/CheckoutPage'
 import { OrderConfirmation } from '@/pages/OrderConfirmation'
 import { CartDrawer } from '@/components/cart/CartDrawer'
-import { SupportChat } from '@/components/vendor/SupportChat'
-import { ErrorBoundary, RouteErrorBoundary } from '@/components/ErrorBoundary'
 
 // Placeholder components (to be implemented)
 function LoginPage() {
@@ -45,112 +42,88 @@ function NotFound() {
 
 function App() {
   return (
-    <ErrorBoundary>
-      <BrowserRouter>
-        <AuthProvider>
-          <CartProvider>
-            <Routes>
-              {/* Public routes */}
-              <Route path="/login" element={<LoginPage />} />
-              <Route path="/signup" element={<SignupPage />} />
+    <BrowserRouter>
+      <AuthProvider>
+        <CartProvider>
+          <Routes>
+            {/* Public routes */}
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/signup" element={<SignupPage />} />
 
-              {/* Redirect handler for post-authentication */}
-              <Route
-                path="/auth/callback"
-                element={
-                  <ProtectedRoute>
-                    <RedirectHandler />
-                  </ProtectedRoute>
-                }
-              />
+            {/* Redirect handler for post-authentication */}
+            <Route
+              path="/auth/callback"
+              element={
+                <ProtectedRoute>
+                  <RedirectHandler />
+                </ProtectedRoute>
+              }
+            />
 
-              {/* Customer routes */}
-              <Route
-                path="/"
-                element={
-                  <CustomerRoute>
-                    <RouteErrorBoundary>
-                      <HomePage />
-                    </RouteErrorBoundary>
-                  </CustomerRoute>
-                }
-              />
+            {/* Customer routes */}
+            <Route
+              path="/"
+              element={
+                <CustomerRoute>
+                  <HomePage />
+                </CustomerRoute>
+              }
+            />
 
-              {/* Checkout routes (authenticated customers) */}
-              <Route
-                path="/checkout"
-                element={
-                  <ProtectedRoute>
-                    <RouteErrorBoundary>
-                      <CheckoutPage />
-                    </RouteErrorBoundary>
-                  </ProtectedRoute>
-                }
-              />
-              <Route
-                path="/order-confirmation"
-                element={
-                  <ProtectedRoute>
-                    <RouteErrorBoundary>
-                      <OrderConfirmation />
-                    </RouteErrorBoundary>
-                  </ProtectedRoute>
-                }
-              />
+            {/* Checkout routes (authenticated customers) */}
+            <Route
+              path="/checkout"
+              element={
+                <ProtectedRoute>
+                  <CheckoutPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/order-confirmation"
+              element={
+                <ProtectedRoute>
+                  <OrderConfirmation />
+                </ProtectedRoute>
+              }
+            />
 
-              {/* Vendor routes with layout */}
-              <Route
-                path="/vendor"
-                element={
-                  <VendorRoute>
-                    <VendorLayout />
-                  </VendorRoute>
-                }
-              >
-                <Route path="dashboard" element={<RouteErrorBoundary><VendorOverview /></RouteErrorBoundary>} />
-                <Route path="products" element={<RouteErrorBoundary><VendorProducts /></RouteErrorBoundary>} />
-                <Route path="orders" element={<RouteErrorBoundary><VendorOrders /></RouteErrorBoundary>} />
-                <Route path="analytics" element={<RouteErrorBoundary><VendorAnalytics /></RouteErrorBoundary>} />
-                <Route path="payouts" element={<RouteErrorBoundary><VendorPayouts /></RouteErrorBoundary>} />
-                <Route path="settings" element={<RouteErrorBoundary><VendorSettings /></RouteErrorBoundary>} />
-              </Route>
+            {/* Vendor routes with layout */}
+            <Route
+              path="/vendor"
+              element={
+                <VendorRoute>
+                  <VendorLayout />
+                </VendorRoute>
+              }
+            >
+              <Route path="dashboard" element={<VendorOverview />} />
+              <Route path="products" element={<VendorProducts />} />
+              <Route path="orders" element={<VendorOrders />} />
+              <Route path="analytics" element={<VendorAnalytics />} />
+              <Route path="settings" element={<VendorSettings />} />
+            </Route>
 
-              {/* Admin routes */}
-              <Route
-                path="/admin"
-                element={
-                  <AdminRoute>
-                    <RouteErrorBoundary>
-                      <AdminDashboard />
-                    </RouteErrorBoundary>
-                  </AdminRoute>
-                }
-              />
+            {/* Admin routes */}
+            <Route
+              path="/admin"
+              element={
+                <AdminRoute>
+                  <AdminDashboard />
+                </AdminRoute>
+              }
+            />
 
-              {/* Catch all - 404 */}
-              <Route path="*" element={<NotFound />} />
-            </Routes>
+            {/* Catch all - 404 */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
 
-            {/* Global Cart Drawer */}
-            <CartDrawer />
-            
-            {/* Global Support Chat (vendor routes only) */}
-            <VendorSupportChat />
-          </CartProvider>
-        </AuthProvider>
-      </BrowserRouter>
-    </ErrorBoundary>
+          {/* Global Cart Drawer */}
+          <CartDrawer />
+        </CartProvider>
+      </AuthProvider>
+    </BrowserRouter>
   )
 }
 
-// Support chat wrapper that only shows on vendor routes
-function VendorSupportChat() {
-  const location = window.location.pathname
-  const isVendorRoute = location.startsWith('/vendor')
-  
-  if (!isVendorRoute) return null
-  
-  return <SupportChat />
-}
-
-export default App;
+export default App
