@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
-import { supabase } from '@/lib/supabase-client'
-import { useCart } from '@/contexts/CartContext'
+import { supabase } from '../lib/supabase-client'
+import { useCart } from '../contexts/CartContext'
 import { ShoppingCart, Check } from 'lucide-react'
 
 type Product = {
