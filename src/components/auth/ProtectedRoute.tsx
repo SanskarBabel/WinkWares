@@ -1,6 +1,6 @@
 import { Navigate, useLocation } from 'react-router-dom'
-import { useAuth } from '@/contexts/AuthContext'
-import { UserRole } from '@/lib/supabase-client'
+import { useAuth } from '../../contexts/AuthContext'
+import type { UserRole } from '../../lib/supabase-client'
 
 interface ProtectedRouteProps {
   children: React.ReactNode
