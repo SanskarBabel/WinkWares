@@ -1,18 +1,17 @@
-// src/App.tsx
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { AuthProvider } from './contexts/AuthContext'
 import { CartProvider } from './contexts/CartContext'
-import { ProtectedRoute, AdminRoute, VendorRoute, CustomerRoute } from '@/components/auth/ProtectedRoute'
+import { ProtectedRoute, AdminRoute, VendorRoute, CustomerRoute } from './components/auth/ProtectedRoute'
 import { RedirectHandler } from './components/auth/RedirectHandler'
 import { VendorLayout } from './components/vendor/VendorLayout'
-import { VendorOverview } from '@/pages/vendor/VendorOverview'
-import { VendorProducts } from '@/pages/vendor/VendorProducts'
-import { VendorOrders } from '@/pages/vendor/VendorOrders'
-import { VendorAnalytics } from '@/pages/vendor/VendorAnalytics'
-import { VendorSettings } from '@/pages/vendor/VendorSettings'
-import { CheckoutPage } from '@/pages/CheckoutPage'
-import { OrderConfirmation } from '@/pages/OrderConfirmation'
-import { CartDrawer } from '@/components/cart/CartDrawer'
+import { VendorOverview } from './pages/vendor/VendorOverview'
+import { VendorProducts } from './pages/vendor/VendorProducts'
+import { VendorOrders } from './pages/vendor/VendorOrders'
+import { VendorAnalytics } from './pages/vendor/VendorAnalytics'
+import { VendorSettings } from './pages/vendor/VendorSettings'
+import { CheckoutPage } from './pages/CheckoutPage'
+import { OrderConfirmation } from './pages/OrderConfirmation'
+import { CartDrawer } from './components/cart/CartDrawer'
 
 // Placeholder components (to be implemented)
 function LoginPage() {
@@ -126,4 +125,4 @@ function App() {
   )
 }
 
-export default App
+export default App;
