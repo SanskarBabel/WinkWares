@@ -1,4 +1,3 @@
-// src/pages/vendor/VendorAnalytics.tsx
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase-client';
 import {

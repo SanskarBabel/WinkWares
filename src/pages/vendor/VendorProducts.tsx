@@ -1,4 +1,3 @@
-// src/pages/vendor/VendorProducts.tsx
 import { useState, useEffect } from 'react';
 import { supabase } from '../../lib/supabase-client';
 import { Plus, Search, Pencil, Trash2, Eye, DollarSign, Package as PackageIcon } from 'lucide-react';
@@ -230,10 +229,10 @@ export function VendorProducts() {
                                         <td className="px-6 py-4">
                                             <span
                                                 className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${product.status === 'active'
-                                                        ? 'bg-green-50 text-green-700'
-                                                        : product.status === 'draft'
-                                                            ? 'bg-gray-50 text-gray-700'
-                                                            : 'bg-red-50 text-red-700'
+                                                    ? 'bg-green-50 text-green-700'
+                                                    : product.status === 'draft'
+                                                        ? 'bg-gray-50 text-gray-700'
+                                                        : 'bg-red-50 text-red-700'
                                                     }`}
                                             >
                                                 {product.status}

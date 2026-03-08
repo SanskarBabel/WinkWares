@@ -296,13 +296,12 @@ export function AdminPayouts() {
                     </td>
                     <td className="px-6 py-4">
                       <span
-                        className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${
-                          batch.status === 'completed'
+                        className={`inline-flex px-2 py-1 text-xs font-medium rounded-full ${batch.status === 'completed'
                             ? 'bg-green-50 text-green-700'
                             : batch.status === 'partial_failure'
-                            ? 'bg-yellow-50 text-yellow-700'
-                            : 'bg-blue-50 text-blue-700'
-                        }`}
+                              ? 'bg-yellow-50 text-yellow-700'
+                              : 'bg-blue-50 text-blue-700'
+                          }`}
                       >
                         {batch.status}
                       </span>

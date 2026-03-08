@@ -47,7 +47,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     supabase.auth.getSession().then(({ data: { session } }: { data: { session: Session | null } }) => {
       setSession(session)
       setUser(session?.user ?? null)
-      
+
       if (session?.user) {
         fetchProfile(session.user.id).finally(() => setLoading(false))
       } else {
@@ -61,13 +61,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session)
       setUser(session?.user ?? null)
-      
+
       if (session?.user) {
         await fetchProfile(session.user.id)
       } else {
         setProfile(null)
       }
-      
+
       setLoading(false)
     })
 

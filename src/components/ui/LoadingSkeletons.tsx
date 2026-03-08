@@ -140,16 +140,3 @@ export function PageSkeleton() {
     </div>
   )
 }
-
-// Add shimmer animation to global CSS
-// Add this to your index.css or global styles:
-/*
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-*/
